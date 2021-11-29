@@ -27,3 +27,22 @@ class User:
     def save(cls, data):
         query = "INSERT INTO users (first_name, last_name, email) VALUES ( %(fname)s, %(lname)s, %(email)s );"
         return connectToMySQL('users_schema').query_db(query, data)
+
+# class method to show one user
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        result = connectToMySQL('users_schema').query_db(query, data)
+        return cls(result[0])
+
+# class method to edit user
+    @classmethod
+    def edit_user(cls, data):
+        query = "UPDATE users SET first_name = %(fname)s, last_name = %(lname)s, email = %(email)s WHERE id = %(id)s;"
+        return connectToMySQL('users_schema').query_db(query, data)
+
+# class method to delete user
+    @classmethod
+    def delete_user(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL('users_schema').query_db(query, data)

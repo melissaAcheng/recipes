@@ -20,6 +20,7 @@
               <th scope="col">Last</th>
               <th scope="col">Email</th>
               <th scope="col">Created At</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
         {% for user in all_users %}
@@ -28,6 +29,11 @@
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.created_at }}</td>
+                <td>
+                    <a href="http://127.0.0.1:5000/users/{{ user.id }}">Show |</a>
+                    <a href="http://127.0.0.1:5000/users/edit/{{ user.id }}">Edit |</a>
+                    <a href="http://127.0.0.1:5000/users/delete/{{ user.id }}">Delete</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
