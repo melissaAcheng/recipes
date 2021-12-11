@@ -31,7 +31,9 @@
                 <td>{{ recipe.date.strftime ("%B %d, %Y") }}</td>
             </tr>
         </table>
+        {% if recipe.user_id == session.user_id %}
         <a href="/recipes/edit/{{ recipe.id }}">Edit</a>
+        {% endif %}
         <a href="/dashboard">Dashboard</a>
         <a href="/logout">Logout</a>
     </div>

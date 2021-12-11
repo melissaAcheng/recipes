@@ -47,16 +47,12 @@
             </div>
             <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
             <input type="submit" value="Create">
-            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% with messages = get_flashed_messages(category_filter=['recipe']) %}
                 {% if messages %}
                     <div class="alert mt-5" role="alert">
-                        <div class=flashes>
-                            {% for category, message in messages %}
-                            {% if category == 'recipe' %}
-                            <p class="{{ category }}"><strong>{{message}}</strong></p>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
+                        {% for message in messages %}
+                        <p class="{{ category }}"><strong>{{message}}</strong></p>
+                        {% endfor %}
                     </div>
                 {% endif %}
                 {% endwith %}

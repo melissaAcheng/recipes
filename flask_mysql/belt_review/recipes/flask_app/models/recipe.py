@@ -26,8 +26,13 @@ class Recipe:
     # READ
     @classmethod
     def get_all_recipes(cls, data):
-        query = "SELECT * FROM recipes WHERE user_id = %(id)s;"
-        return connectToMySQL(cls.db_name).query_db(query, data)
+        query = "SELECT * FROM recipes;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+
+        all_recipes = []
+        for row in results:
+            all_recipes.append(cls(row))
+        return all_recipes
         
 
 
