@@ -46,12 +46,10 @@ class User:
     # READ - GET all friendships
     @classmethod
     def get_friendships(cls):
-        query = "SELECT * FROM users JOIN friendships ON users.id = user_id JOIN users as friends ON friends.id = friend_id;"
+        query = "SELECT * FROM friendships JOIN users on user_id = users.id JOIN users as friends ON friend_id = friends.id;"
 
         results = connectToMySQL(cls.db_name).query_db(query) # returns a list of dictionary
-        # print("RESULTS", results)
-
-        this_friendship = cls(results[0])
+        
 
         friends = []
 
@@ -59,6 +57,7 @@ class User:
 
             friendship_data = {
                 "id": row["id"],
+                "user_id": row["user_id"],
                 "first_name": row["first_name"],
                 "last_name": row["last_name"],
                 "friend_id": row["friends.id"],
@@ -66,10 +65,10 @@ class User:
                 "friend_last_name": row["friends.last_name"],
             }
             
-
             # append data 
             friends.append(friendship_data)
 
+        # print("FRIENDS", friends)
         return friends
     
     @classmethod
@@ -77,3 +76,12 @@ class User:
         query = "SELECT * FROM friendships WHERE user_id = %(user_id)s AND friend_id = %(friend_id)s OR user_id = %(friend_id)s AND friend_id = %(user_id)s;"
         
         return connectToMySQL(cls.db_name).query_db(query, data)
+
+    @classmethod
+    def delete_friendship(cls, data):
+        query = "DELETE FROM friendships WHERE id = %(id)s;"
+
+        print("QUERY", query)
+
+        return connectToMySQL(cls.db_name).query_db(query, data)
+
