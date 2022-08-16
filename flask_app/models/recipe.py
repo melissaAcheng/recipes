@@ -19,8 +19,7 @@ class Recipe:
     # CREATE
     @classmethod
     def create_recipe(cls, data):
-        query = "INSERT INTO recipes (name, description, instructions, time, date, user_id) VALUES (%(name)s, %(description)s, %(instructions)s, %(time)s, %(date)s, %(user_id)s);"
-        
+        query = "INSERT INTO recipes (name, description, instructions, date, time, user_id) VALUES (%(name)s, %(description)s, %(instructions)s, %(date)s, %(time)s, %(user_id)s);"
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # READ
@@ -73,5 +72,4 @@ class Recipe:
         if recipe['date'] == "":
             is_valid = False
             flash("Please enter a date", "recipe")
-
         return is_valid
