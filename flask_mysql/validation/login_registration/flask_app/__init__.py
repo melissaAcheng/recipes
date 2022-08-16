@@ -1,3 +1,0 @@
-from flask import Flask
-app = Flask(__name__)
-app.secret_key = "'\xb5Ga\xf1\x9f\x94\xb4ZS]\xfa\xc6\x1f\xfc/]\x90\xafV\xda_!;\xc3"
