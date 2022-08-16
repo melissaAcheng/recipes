@@ -41,10 +41,19 @@
             </div>
             <div class="form-group mb-3">
                 <label for="time" class="col-sm-2 col-form-label">Under 30 Minutes?</label>
-                <input type="radio" id="Yes" name="time" value="Yes">
-                <label for="Yes">Yes</label>
-                <input type="radio" id="No" name="time" value="No">
-                <label for="No">No</label>
+                {% if recipe.time == "Yes" %}
+                    <input type="radio" id="Yes" name="time" value="Yes" checked>
+                    <label for="Yes">Yes</label>
+                    <input type="radio" id="No" name="time" value="No">
+                    <label for="No">No</label>
+                {% endif %}
+                {% if recipe.time == "No" %}
+                    <input type="radio" id="Yes" name="time" value="Yes">
+                    <label for="Yes">Yes</label>
+                    <input type="radio" id="No" name="time" value="No" checked>
+                    <label for="No">No</label>
+                {% endif %}
+                
             </div>
             <input type="submit" value="Update">
             {% with messages = get_flashed_messages(category_filter=['recipe']) %}
