@@ -10,32 +10,51 @@
 
     <title>Recipes</title>
 </head>
-<body>
+<body class="bg-image"
+style="
+  background-image: url('https://images.pexels.com/photos/240155/pexels-photo-240155.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  height: 100vh;
+
+">
     <div class="container">
-        <h1>Recipe for {{ recipe.name }}</h1>
-        <table class="table no-border w-auto">
-            <tr>
-                <td>Description:</td>
-                <td>{{ recipe.description }}</td>
-            </tr>
-            <tr>
-                <td>Under 30 minutes:</td>
-                <td>{{ recipe.time }}</td>
-            </tr>
-            <tr>
-                <td>Instructions</td>
-                <td>{{ recipe.instructions }}</td>
-            </tr>
-            <tr>
-                <td>Date Made:</td>
-                <td>{{ recipe.date.strftime ("%B %d, %Y") }}</td>
-            </tr>
-        </table>
-        {% if recipe.user_id == session.user_id %}
-        <a href="/recipes/edit/{{ recipe.id }}">Edit</a>
-        {% endif %}
-        <a href="/dashboard">Dashboard</a>
-        <a href="/logout">Logout</a>
+        <div class="d-flex justify-content-center align-items-center vh-100">
+            <div class="card border-0 p-2">
+                <div class="card-body">
+                    <h1 class="card-title">Recipe for {{ recipe.name }}</h1>
+                    <table class="table no-border w-auto">
+                        <tr>
+                            <td>Description:</td>
+                            <td>{{ recipe.description }}</td>
+                        </tr>
+                        <tr>
+                            <td>Under 30 minutes:</td>
+                            <td>{{ recipe.time }}</td>
+                        </tr>
+                        <tr>
+                            <td>Instructions</td>
+                            <td>{{ recipe.instructions }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date Made:</td>
+                            <td>{{ recipe.date.strftime ("%B %d, %Y") }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        {% if recipe.user_id == session.user_id %}
+                        <a href="/recipes/edit/{{ recipe.id }}" class="btn btn-dark px-3">Edit</a>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+                        <a href="/logout" class="btn btn-primary">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
     </div>
 </body>
 </html>
