@@ -9,15 +9,25 @@ import pymysql.cursors
 class MySQLConnection:
     def __init__(self, db):
         # change the user and password as needed
-        connection = pymysql.connect(host=os.getenv("DB_CONN"),
-                                     user='root',
-                                     password='rootroot',
-                                     db=db,
+        # connection = pymysql.connect(host='localhost',
+        #                              user='root',
+        #                              password='rootroot',
+        #                              db=db,
+        #                              charset='utf8mb4',
+        #                              cursorclass=pymysql.cursors.DictCursor,
+        #                              autocommit=True)
+        connection = pymysql.connect(host='ebh2y8tqym512wqs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+                                     user='u1zikav5qv57jmmy',
+                                     password='bu08caojxfve7tho',
+                                     port=3306,
+                                     db='xp4b3i1guyrkcq2c',
                                      charset='utf8mb4',
                                      cursorclass=pymysql.cursors.DictCursor,
                                      autocommit=True)
+        # connection = pymysql.connect(os.getenv("DB_CONN"))
 # establish the connection to the database
         self.connection = connection
+        print("CONNECTION", self.connection)
 # the method to query the database
 
     def query_db(self, query, data=None):
