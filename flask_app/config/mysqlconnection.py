@@ -16,11 +16,11 @@ class MySQLConnection:
         #                              charset='utf8mb4',
         #                              cursorclass=pymysql.cursors.DictCursor,
         #                              autocommit=True)
-        connection = pymysql.connect(host='ebh2y8tqym512wqs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-                                     user='u1zikav5qv57jmmy',
-                                     password='bu08caojxfve7tho',
+        connection = pymysql.connect(host=os.getenv("HOST"),
+                                     user=os.getenv("USER"),
+                                     password=os.getenv("PASSWORD"),
                                      port=3306,
-                                     db='xp4b3i1guyrkcq2c',
+                                     db=os.getenv("DB"),
                                      charset='utf8mb4',
                                      cursorclass=pymysql.cursors.DictCursor,
                                      autocommit=True)
